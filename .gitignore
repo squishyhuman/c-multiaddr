@@ -6,7 +6,6 @@
 
 *.o
 *.a
-.cproject
-.project
 .settings/language.settings.xml
+test_multiaddr
 
