@@ -11,6 +11,8 @@ DEPS = include/multiaddr/base58.h include/multiaddr/endian.h include/multiaddr/m
 	include/multiaddr/varint.h
 OBJS = base58.o varint.o
 
+all: libmultiaddr.a
+
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
@@ -20,9 +22,10 @@ libmultiaddr.a: $(OBJS)
 test_multiaddr: testing.o libmultiaddr.a
 	$(CC) -o $@ $^ $(LFLAGS)
 
-all: test_multiaddr
-
 clean:
 	rm -f *.o
 	rm -f libmultiaddr.a
 	rm -f test_multiaddr
+
+test: test_multiaddr
+	./test_multiaddr
